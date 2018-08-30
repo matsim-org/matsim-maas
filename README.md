@@ -1,4 +1,4 @@
-![100,000 robo-taxis driving in Berlin (10% sample)](docs/header_big.png)
+![100,000 robo-taxis driving in Berlin (10% sample)](docs/header_big.png "100,000 robo-taxis driving in Berlin (10% sample)")
 
 # MATSim – Mobility as a Service
 
