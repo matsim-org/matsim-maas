@@ -19,12 +19,16 @@
 
 package org.matsim.maas.drt;
 
+import java.net.URL;
+
 import org.matsim.contrib.drt.run.DrtConfigGroup;
 import org.matsim.contrib.drt.run.DrtControlerCreator;
 import org.matsim.contrib.dvrp.run.DvrpConfigGroup;
 import org.matsim.core.config.Config;
 import org.matsim.core.config.ConfigUtils;
 import org.matsim.core.config.groups.QSimConfigGroup;
+import org.matsim.core.utils.io.IOUtils;
+import org.matsim.maas.MaasExamplesUtils;
 import org.matsim.vis.otfvis.OTFVisConfigGroup;
 
 /**
@@ -33,12 +37,17 @@ import org.matsim.vis.otfvis.OTFVisConfigGroup;
  *
  */
 public class RunDrtExample {
-	
-	private static final String COTTBUS_CONFIG_FILE_DOOR2DOOR = "scenarios/cottbus/drtconfig_door2door.xml";
+
+	private static final URL COTTBUS_DOOR2DOOR_CONFIG = IOUtils.newUrl(MaasExamplesUtils.getScenarioURL("cottbus"),
+			"drtconfig_door2door.xml");
+
 	@SuppressWarnings("unused")
-	private static final String COTTBUS_CONFIG_FILE_STOPBASED = "drt_example/drtconfig_stopbased.xml";
+	private static final URL COTTBUS_STOPBASED_CONFIG = IOUtils.newUrl(MaasExamplesUtils.getScenarioURL("cottbus"),
+			"drtconfig_stopbased.xml");
+
 	@SuppressWarnings("unused")
-	private static final String MIELEC_CONFIG_FILE = "mielec_2014_02/mielec_drt_config.xml";
+	private static final URL MIELEC_CONFIG = IOUtils.newUrl(MaasExamplesUtils.getScenarioURL("mielec_2014_02"),
+			"mielec_drt_config.xml");
 
 	public static void run(Config config, boolean otfvis) {
 		DrtControlerCreator.createControler(config, otfvis).run();
@@ -46,7 +55,7 @@ public class RunDrtExample {
 
 	public static void main(String[] args) {
 
-		Config config = ConfigUtils.loadConfig(COTTBUS_CONFIG_FILE_DOOR2DOOR, new DrtConfigGroup(), new DvrpConfigGroup(),
+		Config config = ConfigUtils.loadConfig(COTTBUS_DOOR2DOOR_CONFIG, new DrtConfigGroup(), new DvrpConfigGroup(),
 				new OTFVisConfigGroup());
 		config.qsim().setTrafficDynamics(QSimConfigGroup.TrafficDynamics.kinematicWaves);
 		config.qsim().setSnapshotStyle(QSimConfigGroup.SnapshotStyle.kinematicWaves);

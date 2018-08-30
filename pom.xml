@@ -79,6 +79,12 @@
 	</dependencies>
 
 	<build>
+		<resources>
+			<resource>
+				<directory>scenarios</directory>
+				<targetPath>scenarios</targetPath>
+			</resource>
+		</resources>
 		<plugins>
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
