@@ -1,3 +1,5 @@
+![100,000 robo-taxis driving in Berlin (10% sample)](docs/header_big.png)
+
 # MATSim – Mobility as a Service
 
 This project contains a collection of examples to simulate Mobility as a Service (MaaS) and Mobility on Demand (MoD) in MATSim. All services may be simulated with a driver or using Autonomous Vehicles (AVs). The basic framework for these services are the [Dynamic Vehicle Routing Problem (DVRP)](https://github.com/matsim-org/matsim/tree/master/contribs/dvrp), [Autonomous Vehicles](https://github.com/matsim-org/matsim/tree/master/contribs/av), [Taxi](https://github.com/matsim-org/matsim/tree/master/contribs/taxi) and [Demand Responsive Transport (DRT)](https://github.com/matsim-org/matsim/tree/master/contribs/drt) extensions. This means, vehicles will be dispatched on-line while the MATSim Mobility Simulation is running.
