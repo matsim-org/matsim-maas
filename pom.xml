@@ -48,7 +48,11 @@
 
 		<!-- the following dependencies show how to use MATSim contributions. For 
 			a list of available contribs, see http://matsim.org/extensions -->
-
+		<dependency>
+			<groupId>junit</groupId>
+			<artifactId>junit</artifactId>
+			<version>4.12</version>
+		</dependency>
 
 		<dependency>
 			<groupId>org.matsim.contrib</groupId>
