@@ -19,7 +19,6 @@
 
 package org.matsim.maas.taxi;
 
-import com.google.inject.Provider;
 import org.matsim.api.core.v01.Scenario;
 import org.matsim.api.core.v01.network.Link;
 import org.matsim.contrib.dvrp.data.Request;
@@ -39,6 +38,8 @@ import org.matsim.core.mobsim.framework.events.MobsimBeforeSimStepEvent;
 import org.matsim.core.scenario.ScenarioUtils;
 import org.matsim.vis.otfvis.OTFVisConfigGroup;
 
+import com.google.inject.Provider;
+
 /**
  * An example class to Run a taxi scenario based on a config file.
  * Note that several different optimizers may be set directly within the config file.
@@ -46,74 +47,75 @@ import org.matsim.vis.otfvis.OTFVisConfigGroup;
  */
 
 public class RunTaxiExample {
-    public static final String CONFIG_FILE_RULEBASED = "scenarios/mielec_2014_02/mielec_taxi_config_rulebased.xml";
-    public static final String CONFIG_FILE_ASSIGNMENT = "scenarios/mielec_2014_02/mielec_taxi_config_assignment.xml";
+	public static final String CONFIG_FILE_RULEBASED = "scenarios/mielec_2014_02/mielec_taxi_config_rulebased.xml";
+	public static final String CONFIG_FILE_ASSIGNMENT = "scenarios/mielec_2014_02/mielec_taxi_config_assignment.xml";
 
-    public static void run(String configFile, boolean otfvis, int lastIteration) {
-        // load config
-        Config config = ConfigUtils.loadConfig(configFile, new TaxiConfigGroup(), new DvrpConfigGroup(),
-                new OTFVisConfigGroup());
-        config.controler().setLastIteration(lastIteration);
-        config.addConfigConsistencyChecker(new TaxiConfigConsistencyChecker());
-        config.checkConsistency();
+	public static void run(String configFile, boolean otfvis, int lastIteration) {
+		// load config
+		Config config = ConfigUtils.loadConfig(configFile, new TaxiConfigGroup(), new DvrpConfigGroup(),
+				new OTFVisConfigGroup());
+		config.controler().setLastIteration(lastIteration);
+		config.addConfigConsistencyChecker(new TaxiConfigConsistencyChecker());
+		config.checkConsistency();
 
-        // load scenario
-        Scenario scenario = ScenarioUtils.loadScenario(config);
+		// load scenario
+		Scenario scenario = ScenarioUtils.loadScenario(config);
 
-        // setup controler
-        Controler controler = new Controler(scenario);
+		// setup controler
+		Controler controler = new Controler(scenario);
 
-        final boolean ownTaxiOptimizer = false;
-        if (!ownTaxiOptimizer) {
-            controler.addOverridingModule(TaxiDvrpModules.create());
-            // (default taxi optimizer)
-        } else {
-            controler.addOverridingModule(TaxiDvrpModules.create(MyTaxiOptimizerProvider.class));
-            // (implement your own taxi optimizer)
-        }
+		String mode = TaxiConfigGroup.get(config).getMode();
+		final boolean ownTaxiOptimizer = false;
+		if (!ownTaxiOptimizer) {
+			controler.addOverridingModule(TaxiDvrpModules.create(mode));
+			// (default taxi optimizer)
+		} else {
+			controler.addOverridingModule(TaxiDvrpModules.create(mode, MyTaxiOptimizerProvider.class));
+			// (implement your own taxi optimizer)
+		}
 
-        controler.addOverridingModule(new TaxiModule()); // taxi output (can be commented out)
+		controler.addOverridingModule(new TaxiModule()); // taxi output (can be commented out)
 
-        if (otfvis) {
-            controler.addOverridingModule(new OTFVisLiveModule()); // OTFVis visualisation
-        }
+		if (otfvis) {
+			controler.addOverridingModule(new OTFVisLiveModule()); // OTFVis visualisation
+		}
 
-        // run simulation
-        controler.run();
-    }
+		// run simulation
+		controler.run();
+	}
 
-    public static void main(String[] args) {
-        //RunTaxiExample.run(CONFIG_FILE_RULEBASED,false, 0); // switch to 'true' to turn on visualisation
-        RunTaxiExample.run(CONFIG_FILE_ASSIGNMENT, false, 0); // switch to 'true' to turn on visualisation
-    }
+	public static void main(String[] args) {
+		//RunTaxiExample.run(CONFIG_FILE_RULEBASED,false, 0); // switch to 'true' to turn on visualisation
+		RunTaxiExample.run(CONFIG_FILE_ASSIGNMENT, false, 0); // switch to 'true' to turn on visualisation
+	}
 
-    /**
-     * See {@link DefaultTaxiOptimizerProvider} for examples.
-     */
-    private static class MyTaxiOptimizerProvider implements Provider<TaxiOptimizer> {
-        @Override
-        public TaxiOptimizer get() {
-            return new TaxiOptimizer() {
-                @Override
-                public void vehicleEnteredNextLink(Vehicle vehicle, Link nextLink) {
-                    // TODO Auto-generated method stub
-                }
+	/**
+	 * See {@link DefaultTaxiOptimizerProvider} for examples.
+	 */
+	private static class MyTaxiOptimizerProvider implements Provider<TaxiOptimizer> {
+		@Override
+		public TaxiOptimizer get() {
+			return new TaxiOptimizer() {
+				@Override
+				public void vehicleEnteredNextLink(Vehicle vehicle, Link nextLink) {
+					// TODO Auto-generated method stub
+				}
 
-                @Override
-                public void requestSubmitted(Request request) {
-                    // TODO Auto-generated method stub
-                }
+				@Override
+				public void requestSubmitted(Request request) {
+					// TODO Auto-generated method stub
+				}
 
-                @Override
-                public void nextTask(Vehicle vehicle) {
-                    // TODO Auto-generated method stub
-                }
+				@Override
+				public void nextTask(Vehicle vehicle) {
+					// TODO Auto-generated method stub
+				}
 
-                @Override
-                public void notifyMobsimBeforeSimStep(@SuppressWarnings("rawtypes") MobsimBeforeSimStepEvent e) {
-                    // TODO Auto-generated method stub
-                }
-            };
-        }
-    }
+				@Override
+				public void notifyMobsimBeforeSimStep(@SuppressWarnings("rawtypes") MobsimBeforeSimStepEvent e) {
+					// TODO Auto-generated method stub
+				}
+			};
+		}
+	}
 }
