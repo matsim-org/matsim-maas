@@ -19,18 +19,21 @@
 
 package org.matsim.maas.taxi;
 
+import java.util.Collections;
+
 import org.matsim.api.core.v01.Scenario;
 import org.matsim.api.core.v01.network.Link;
 import org.matsim.contrib.dvrp.data.Request;
 import org.matsim.contrib.dvrp.data.Vehicle;
 import org.matsim.contrib.dvrp.run.DvrpConfigGroup;
+import org.matsim.contrib.dvrp.run.DvrpModule;
 import org.matsim.contrib.otfvis.OTFVisLiveModule;
 import org.matsim.contrib.taxi.optimizer.DefaultTaxiOptimizerProvider;
 import org.matsim.contrib.taxi.optimizer.TaxiOptimizer;
 import org.matsim.contrib.taxi.run.TaxiConfigConsistencyChecker;
 import org.matsim.contrib.taxi.run.TaxiConfigGroup;
 import org.matsim.contrib.taxi.run.TaxiModule;
-import org.matsim.contrib.taxi.run.examples.TaxiDvrpModules;
+import org.matsim.contrib.taxi.run.examples.TaxiQSimModules;
 import org.matsim.core.config.Config;
 import org.matsim.core.config.ConfigUtils;
 import org.matsim.core.controler.Controler;
@@ -67,13 +70,14 @@ public class RunTaxiExample {
 		String mode = TaxiConfigGroup.get(config).getMode();
 		final boolean ownTaxiOptimizer = false;
 		if (!ownTaxiOptimizer) {
-			controler.addOverridingModule(TaxiDvrpModules.create(mode));
+			controler.addQSimModule(TaxiQSimModules.createModuleForQSimPlugin());
 			// (default taxi optimizer)
 		} else {
-			controler.addOverridingModule(TaxiDvrpModules.create(mode, MyTaxiOptimizerProvider.class));
+			controler.addQSimModule(TaxiQSimModules.createModuleForQSimPlugin(MyTaxiOptimizerProvider.class));
 			// (implement your own taxi optimizer)
 		}
 
+		controler.addOverridingModule(DvrpModule.createModule(mode, Collections.singleton(TaxiOptimizer.class)));
 		controler.addOverridingModule(new TaxiModule()); // taxi output (can be commented out)
 
 		if (otfvis) {
