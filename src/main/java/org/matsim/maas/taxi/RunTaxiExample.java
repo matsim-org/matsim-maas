@@ -33,7 +33,7 @@ import org.matsim.contrib.taxi.optimizer.TaxiOptimizer;
 import org.matsim.contrib.taxi.run.TaxiConfigConsistencyChecker;
 import org.matsim.contrib.taxi.run.TaxiConfigGroup;
 import org.matsim.contrib.taxi.run.TaxiModule;
-import org.matsim.contrib.taxi.run.examples.TaxiQSimModules;
+import org.matsim.contrib.taxi.run.examples.TaxiQSimModule;
 import org.matsim.core.config.Config;
 import org.matsim.core.config.ConfigUtils;
 import org.matsim.core.controler.Controler;
@@ -70,10 +70,10 @@ public class RunTaxiExample {
 		String mode = TaxiConfigGroup.get(config).getMode();
 		final boolean ownTaxiOptimizer = false;
 		if (!ownTaxiOptimizer) {
-			controler.addQSimModule(TaxiQSimModules.createModuleForQSimPlugin());
+			controler.addQSimModule(new TaxiQSimModule());
 			// (default taxi optimizer)
 		} else {
-			controler.addQSimModule(TaxiQSimModules.createModuleForQSimPlugin(MyTaxiOptimizerProvider.class));
+			controler.addQSimModule(new TaxiQSimModule(MyTaxiOptimizerProvider.class));
 			// (implement your own taxi optimizer)
 		}
 
