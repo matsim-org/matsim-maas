@@ -42,17 +42,17 @@
 	</module>
 
     <module name="drtfares">
-        <!-- Define a parameterset for each taxi mode where fares should be charged -->
+		<!-- Define a parameterset for each drt mode where fares should be charged -->
 
         <parameterset type="drtfare">
             <param name="mode" value="drt"/>
-            <!-- transport mode for which this fare applies. Default: taxi -->
+			<!-- transport mode for which this fare applies. Default: drt -->
             <param name="basefare" value="0.25"/>
             <!-- Daily subscription fee (fee = positive value) -->
             <param name="dailySubscriptionFee" value="0.0"/>
-            <!-- taxi fare per meter (fee = positive value) -->
+			<!-- drt fare per meter (fee = positive value) -->
             <param name="distanceFare_m" value="0.0001"/>
-            <!-- taxi fare per hour (fee = positive value) -->
+			<!-- drt fare per hour (fee = positive value) -->
             <param name="timeFare_h" value="3.6"/>
         </parameterset>
     </module>
