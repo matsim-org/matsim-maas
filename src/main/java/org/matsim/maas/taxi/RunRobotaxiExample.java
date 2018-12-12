@@ -49,7 +49,7 @@ import java.util.Collections;
 public class RunRobotaxiExample {
 
     public static void main(String[] args) {
-        String configFile = "scenarios/cottbus/robnotaxi_config.xml";
+        String configFile = "scenarios/cottbus/robotaxi_config.xml";
         RunRobotaxiExample.run(configFile, false);
     }
 
