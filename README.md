@@ -59,6 +59,7 @@ The [scenarios](scenarios/) folder contains several test scenarios. These are ro
 1) Check out this project using your favorite git client (or just download as a zip)
 2) Import the folder as a new Maven project to Eclipse (Import --> Maven --> Existing project) or intelliJ (New --> Module from existing sources --> Select the folder --> Maven)
 3) Run the example classes and start editing them according to your taste.
+
 Using the Maven approach is *strongly* recommended.
 
 
