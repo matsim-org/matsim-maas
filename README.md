@@ -52,3 +52,14 @@ With DVRP being the common base to all the modules described here, there is some
 ## Test scenarios
 
 The [scenarios](scenarios/) folder contains several test scenarios. These are roughly derived from existing MATSim scenarios, but often depict only the excerpt with relevance to MaaS of the scenario. 
+
+
+## How to use
+
+1) Check out this project using your favorite git client (or just download as a zip)
+2) Import the folder as a new Maven project to Eclipse (Import --> Maven --> Existing project) or intelliJ (New --> Module from existing sources --> Select the folder --> Maven)
+3) Run the example classes and start editing them according to your taste.
+Using the Maven approach is *strongly* recommended.
+
+
+
