@@ -66,15 +66,7 @@ public class RunTaxiExample {
 		Controler controler = new Controler(scenario);
 
 		String mode = TaxiConfigGroup.get(config).getMode();
-		final boolean ownTaxiOptimizer = false;
-		if (!ownTaxiOptimizer) {
-			controler.addQSimModule(new TaxiQSimModule());
-			// (default taxi optimizer)
-		} else {
-			controler.addQSimModule(new TaxiQSimModule(MyTaxiOptimizerProvider.class));
-			// (implement your own taxi optimizer)
-		}
-
+		controler.addQSimModule(new TaxiQSimModule());
 		controler.addOverridingModule(DvrpModule.createModuleWithDefaultDvrpModeQSimModule(mode));
 		controler.addOverridingModule(new TaxiModule());
 
