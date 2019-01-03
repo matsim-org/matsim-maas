@@ -57,7 +57,7 @@ public class RunTaxiExample {
 		Controler controler = new Controler(scenario);
 
 		String mode = TaxiConfigGroup.get(config).getMode();
-		controler.addOverridingModule(DvrpModule.createModuleWithDefaultDvrpModeQSimModule(mode));
+		controler.addOverridingModule(new DvrpModule(mode));
 		controler.addOverridingModule(new TaxiModule());
 
 		if (otfvis) {
