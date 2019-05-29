@@ -18,12 +18,7 @@
         <param name="detailedStats" value="true"/>
 
         <!-- This is a rule based dispatch algorithm -->
-		<parameterset type="RuleBasedTaxiOptimizer">
-            <param name="goal" value="DEMAND_SUPPLY_EQUIL"/>
-            <param name="nearestRequestsLimit" value="99999"/>
-            <param name="nearestVehiclesLimit" value="99999"/>
-            <param name="cellSize" value="1000"/>
-        </parameterset>
+        <parameterset type="RuleBasedTaxiOptimizer"/>
 
     </module>
 

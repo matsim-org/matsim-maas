@@ -18,15 +18,7 @@
         <param name="detailedStats" value="true"/>
 
         <!-- This is an assignement based dispatch algorithm -->
-		<parameterset type="AssignmentTaxiOptimizer">
-            <param name="mode" value="ARRIVAL_TIME"/>
-            <param name="vehPlanningHorizonOversupply" value="120"/>
-            <param name="vehPlanningHorizonUndersupply" value="30"/>
-            <param name="nearestRequestsLimit" value="40"/>
-            <param name="nearestVehiclesLimit" value="40"/>
-            <param name="reoptimizationTimeStep" value="10"/>
-        </parameterset>
-
+        <parameterset type="AssignmentTaxiOptimizer"/>
     </module>
 
     <module name="network">

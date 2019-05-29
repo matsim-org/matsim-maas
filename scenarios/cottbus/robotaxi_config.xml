@@ -68,12 +68,7 @@
 			tracking. -->
 		<param name="vehicleDiversion" value="false" />
 
-		<parameterset type="RuleBasedTaxiOptimizer">
-			<param name="cellSize" value="1000" />
-			<param name="goal" value="DEMAND_SUPPLY_EQUIL" />
-			<param name="nearestRequestsLimit" value="40" />
-			<param name="nearestVehiclesLimit" value="40" />
-		</parameterset>
+		<parameterset type="RuleBasedTaxiOptimizer"/>
 	</module>
 
 
