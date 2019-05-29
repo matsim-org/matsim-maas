@@ -18,9 +18,7 @@
         <param name="detailedStats" value="true"/>
 
         <!-- This is an assignement based dispatch algorithm -->
-        <parameterset type="optimizer">
-            <param name="type" value="ASSIGNMENT"/>
-            <param name="id" value="example"/>
+		<parameterset type="AssignmentTaxiOptimizer">
             <param name="mode" value="ARRIVAL_TIME"/>
             <param name="vehPlanningHorizonOversupply" value="120"/>
             <param name="vehPlanningHorizonUndersupply" value="30"/>
