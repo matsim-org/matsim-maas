@@ -50,23 +50,12 @@ public class CreateFleetVehicles {
 
 	private static final Random random = new Random(0);
 
-	private final Path networkFile;
-	private final Path outputFile;
-
-	private CreateFleetVehicles(Path networkFile, Path outputFile) {
-		this.networkFile = networkFile;
-		this.outputFile = outputFile;
-	}
+	private static final Path networkFile = Paths.get("path/to/your/network.xml.gz");
+	private static final Path outputFile = Paths.get("path/to/your/outputfile.xml.gz");
 
 	public static void main(String[] args) {
 
-		if (args.length != 2) {
-			throw new IllegalArgumentException("you have to supply 2 args: path/to/your/network path/to/your/output/file");
-		}
-		Path networkFile = Paths.get(args[0]);
-		Path outputFile = Paths.get(args[1]);
-
-		new CreateFleetVehicles(networkFile, outputFile).run();
+		new CreateFleetVehicles().run();
 	}
 
 	private void run() {
