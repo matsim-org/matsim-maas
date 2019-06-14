@@ -17,28 +17,24 @@
  *                                                                         *
  * *********************************************************************** */
 
-/**
- *
- */
 package org.matsim.maas.utils;
 
 import org.matsim.api.core.v01.Id;
 import org.matsim.api.core.v01.Scenario;
 import org.matsim.api.core.v01.TransportMode;
-import org.matsim.api.core.v01.network.Link;
 import org.matsim.contrib.dvrp.fleet.DvrpVehicle;
 import org.matsim.contrib.dvrp.fleet.DvrpVehicleSpecification;
 import org.matsim.contrib.dvrp.fleet.FleetWriter;
 import org.matsim.contrib.dvrp.fleet.ImmutableDvrpVehicleSpecification;
 import org.matsim.core.config.ConfigUtils;
-import org.matsim.core.gbl.MatsimRandom;
 import org.matsim.core.network.io.MatsimNetworkReader;
 import org.matsim.core.scenario.ScenarioUtils;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.Random;
-import java.util.stream.Collectors;
+import java.util.UUID;
+import java.util.stream.Stream;
 
 /**
  * @author jbischoff
@@ -47,40 +43,49 @@ import java.util.stream.Collectors;
  */
 public class CreateFleetVehicles {
 
-	/**
-	 * @param args
-	 */
+	private static final int numberOfVehicles = 1500;
+	private static final int seatsPerVehicle = 6;
+	private static final double operationStartTime = 0;
+	private static final double operationEndTime = 24 * 60 * 60; //24h
+
+	private static final Random random = new Random(0);
+
+	private final Path networkFile;
+	private final Path outputFile;
+
+	private CreateFleetVehicles(Path networkFile, Path outputFile) {
+		this.networkFile = networkFile;
+		this.outputFile = outputFile;
+	}
+
 	public static void main(String[] args) {
 
-		int numberofVehicles = 5000;
-		double operationStartTime = 0.; //the time from which a vehicle is operative
-		double operationEndTime = 24 * 3600.;    //the time until a vehicle is operative
-		int seats = 4; // capacity, only used in DRT
-		String networkfile = "scenarios/cottbus/network.xml.gz";
-		String fleetVehicleFile = "fleetVehicles_" + numberofVehicles + ".xml";
-		String networkMode = TransportMode.car; // Network mode, on which vehicles should be placed
-		Scenario scenario = ScenarioUtils.createScenario(ConfigUtils.createConfig());
-		List<DvrpVehicleSpecification> vehicles = new ArrayList<>();
-		Random random = MatsimRandom.getLocalInstance();
-		new MatsimNetworkReader(scenario.getNetwork()).readFile(networkfile);
-		List<Link> allLinks = new ArrayList<>();
-		allLinks.addAll(scenario.getNetwork().getLinks().values()
-				.stream()
-				.filter(l -> l.getAllowedModes().contains(networkMode))
-				.collect(Collectors.toSet()));
-
-		for (int i = 0; i < numberofVehicles; i++) {
-			Link startLink = allLinks.get(random.nextInt(allLinks.size()));
-
-			vehicles.add(ImmutableDvrpVehicleSpecification.newBuilder().id(Id.create("fleetVehicle" + i, DvrpVehicle.class))
-					.startLinkId(startLink.getId())
-					.capacity(seats)
-					.serviceBeginTime(operationStartTime)
-					.serviceEndTime(operationEndTime)
-					.build());
-
+		if (args.length != 2) {
+			throw new IllegalArgumentException("you have to supply 2 args: path/to/your/network path/to/your/output/file");
 		}
-		new FleetWriter(vehicles.stream()).write(fleetVehicleFile);
+		Path networkFile = Paths.get(args[0]);
+		Path outputFile = Paths.get(args[1]);
+
+		new CreateFleetVehicles(networkFile, outputFile).run();
+	}
+
+	private void run() {
+
+		Scenario scenario = ScenarioUtils.createScenario(ConfigUtils.createConfig());
+		new MatsimNetworkReader(scenario.getNetwork()).readFile(networkFile.toString());
+		Stream<DvrpVehicleSpecification> vehicleSpecificationStream = scenario.getNetwork().getLinks().entrySet().stream()
+				.filter(entry -> entry.getValue().getAllowedModes().contains(TransportMode.car)) // drt can only start on links with Transport mode 'car'
+				.sorted((e1, e2) -> (random.nextInt(2) - 1)) // shuffle links
+				.limit(numberOfVehicles) // select the first *numberOfVehicles* links
+				.map(entry -> ImmutableDvrpVehicleSpecification.newBuilder()
+						.id(Id.create("drt_" + UUID.randomUUID().toString(), DvrpVehicle.class))
+						.startLinkId(entry.getKey())
+						.capacity(seatsPerVehicle)
+						.serviceBeginTime(operationStartTime)
+						.serviceEndTime(operationEndTime)
+						.build());
+
+		new FleetWriter(vehicleSpecificationStream).write(outputFile.toString());
 	}
 
 }
