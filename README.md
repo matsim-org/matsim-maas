@@ -47,7 +47,7 @@ All MaaS extensions may be simulated with and without drivers. Arguably, the big
 
 With DVRP being the common base to all the modules described here, there is some common infrastructure all of the MaaS modules share:
 * The *DVRP config* group. In this, both the Leg mode of an agent using MaaS can be defined (such as "taxi") as well as the network mode vehicles are using (such as "car"). Furthermore, the on-line Travel Time Calculator can be adapted, if required.
-* The *Vehicles Container*. This is a file containing information about the fleet used by any MaaS extension. 
+* The *Vehicles Container*. This is a file containing information about the fleet used by any MaaS extension. Fleet vehicle files can be created using the *CreateFleetVehicles* script.
 
 ## Test scenarios
 
