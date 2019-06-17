@@ -27,13 +27,13 @@ import org.matsim.contrib.dvrp.fleet.DvrpVehicleSpecification;
 import org.matsim.contrib.dvrp.fleet.FleetWriter;
 import org.matsim.contrib.dvrp.fleet.ImmutableDvrpVehicleSpecification;
 import org.matsim.core.config.ConfigUtils;
+import org.matsim.core.gbl.MatsimRandom;
 import org.matsim.core.network.io.MatsimNetworkReader;
 import org.matsim.core.scenario.ScenarioUtils;
 
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.Random;
-import java.util.UUID;
 import java.util.stream.Stream;
 
 /**
@@ -43,15 +43,18 @@ import java.util.stream.Stream;
  */
 public class CreateFleetVehicles {
 
+	/**
+	 * Adjust these variables and paths to your need.
+	 */
+
 	private static final int numberOfVehicles = 1500;
-	private static final int seatsPerVehicle = 6;
+	private static final int seatsPerVehicle = 6; //this is important for DRT, value is not used by taxi
 	private static final double operationStartTime = 0;
 	private static final double operationEndTime = 24 * 60 * 60; //24h
+	private static final Random random = MatsimRandom.getRandom();
 
-	private static final Random random = new Random(0);
-
-	private static final Path networkFile = Paths.get("path/to/your/network.xml.gz");
-	private static final Path outputFile = Paths.get("path/to/your/outputfile.xml.gz");
+	private static final Path networkFile = Paths.get("scenarios/cottbus/network.xml.gz");
+	private static final Path outputFile = Paths.get("fleetVehicles.xml");
 
 	public static void main(String[] args) {
 
@@ -62,12 +65,13 @@ public class CreateFleetVehicles {
 
 		Scenario scenario = ScenarioUtils.createScenario(ConfigUtils.createConfig());
 		new MatsimNetworkReader(scenario.getNetwork()).readFile(networkFile.toString());
+		final int[] i = {0};
 		Stream<DvrpVehicleSpecification> vehicleSpecificationStream = scenario.getNetwork().getLinks().entrySet().stream()
 				.filter(entry -> entry.getValue().getAllowedModes().contains(TransportMode.car)) // drt can only start on links with Transport mode 'car'
 				.sorted((e1, e2) -> (random.nextInt(2) - 1)) // shuffle links
 				.limit(numberOfVehicles) // select the first *numberOfVehicles* links
 				.map(entry -> ImmutableDvrpVehicleSpecification.newBuilder()
-						.id(Id.create("drt_" + UUID.randomUUID().toString(), DvrpVehicle.class))
+						.id(Id.create("drt_" + i[0]++, DvrpVehicle.class))
 						.startLinkId(entry.getKey())
 						.capacity(seatsPerVehicle)
 						.serviceBeginTime(operationStartTime)
