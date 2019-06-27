@@ -44,7 +44,7 @@
     </module>
 
     <module name="controler">
-        <param name="outputDirectory" value="output/mielec_taxi_2014_02_assignment"/>
+        <param name="outputDirectory" value="output/mielec_taxi_assignment"/>
         <param name="overwriteFiles" value="deleteDirectoryIfExists"/>
         <param name="firstIteration" value="0"/>
         <param name="lastIteration" value="0"/>
