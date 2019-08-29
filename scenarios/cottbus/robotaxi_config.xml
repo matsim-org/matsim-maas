@@ -22,7 +22,7 @@
 	<module name="dvrp">
 		<!-- Mode of which the network will be used for routing vehicles, calculating trave times etc. (fleet operator's perspective).
 					If null, no mode filtering is done; the standard network (Scenario.getNetwork()) is used - usually, car -->
-		<param name="networkMode" value="null"/>
+		<param name="networkModes" value="car"/>
 	</module>
 
 	<module name="multiModeTaxi">
