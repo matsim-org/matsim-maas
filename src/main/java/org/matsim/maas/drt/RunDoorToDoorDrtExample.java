@@ -21,8 +21,8 @@ package org.matsim.maas.drt;
 
 import org.matsim.contrib.av.robotaxi.fares.drt.DrtFareModule;
 import org.matsim.contrib.av.robotaxi.fares.drt.DrtFaresConfigGroup;
-import org.matsim.contrib.drt.run.DrtConfigGroup;
 import org.matsim.contrib.drt.run.DrtControlerCreator;
+import org.matsim.contrib.drt.run.MultiModeDrtConfigGroup;
 import org.matsim.contrib.dvrp.run.DvrpConfigGroup;
 import org.matsim.core.config.Config;
 import org.matsim.core.config.ConfigUtils;
@@ -56,7 +56,8 @@ public class RunDoorToDoorDrtExample {
 
 	public static void main(String[] args) {
 
-		Config config = ConfigUtils.loadConfig(COTTBUS_DOOR2DOOR_CONFIG, new DrtConfigGroup(), new DvrpConfigGroup(),
+		Config config = ConfigUtils.loadConfig(COTTBUS_DOOR2DOOR_CONFIG, new MultiModeDrtConfigGroup(),
+				new DvrpConfigGroup(),
 				new OTFVisConfigGroup(), new DrtFaresConfigGroup());
 		run(config, false);
 	}
