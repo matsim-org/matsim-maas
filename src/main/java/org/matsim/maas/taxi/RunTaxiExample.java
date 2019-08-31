@@ -55,7 +55,7 @@ public class RunTaxiExample {
 		// setup controler
 		Controler controler = new Controler(scenario);
 
-		String mode = TaxiConfigGroup.get(config).getMode();
+		String mode = TaxiConfigGroup.getSingleModeTaxiConfig(config).getMode();
 		controler.addOverridingModule(new DvrpModule());
 		controler.addOverridingModule(new MultiModeTaxiModule());
 		controler.configureQSimComponents(DvrpQSimComponents.activateModes(mode));
