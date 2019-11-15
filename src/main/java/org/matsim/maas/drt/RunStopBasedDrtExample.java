@@ -36,7 +36,7 @@ import org.matsim.vis.otfvis.OTFVisConfigGroup;
  * The stops are defined using the Transit Schedule file format.
  * You'll find the scenario in the "scenario" folder of the project.
  */
-public class RunStopbasedDrtExample {
+public class RunStopBasedDrtExample {
 
 
     public static void run(Config config, boolean otfvis) {

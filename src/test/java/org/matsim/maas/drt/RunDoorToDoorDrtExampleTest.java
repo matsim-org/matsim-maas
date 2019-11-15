@@ -23,7 +23,7 @@ package org.matsim.maas.drt;/*
 
 import org.junit.Test;
 
-public class DoorToDoorDRTTest {
+public class RunDoorToDoorDrtExampleTest {
 
     @Test
     public void testDrtDoorToDoor() {
