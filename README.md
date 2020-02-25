@@ -31,9 +31,8 @@ The effects of different road capacity use are described in
 
 ### Demand Responsive Transport (DRT)
 
-Demand Responsive Transport allows the pooling of several passengers into a single vehicle. Several constraints, such as maximum travel times and maximum waiting times, can be taken into account when organizing the vehicle dispatch.
-A general description of the algorithms can be found in 
-*J. Bischoff, M. Maciejewski, K. Nagel* **City-wide Shared Taxis: A Simulation Study in Berlin**, IEEE ITSC 2017, DOI: [10.1109/ITSC.2017.8317926](https://doi.org/10.1109/ITSC.2017.8317926), [Full text available here](http://dx.doi.org/10.14279/depositonce-7734).
+Demand Responsive Transport allows the pooling of several passengers into a single vehicle. Several constraints, such as maximum travel times and maximum waiting times, can be taken into account when organizing the vehicle dispatch. 
+Please find a full documentation [here](drt.md).
 
 
 ### Autonomous Vehicles

@@ -39,6 +39,8 @@
 				<param name="targetAlpha" value="0.5"/>
 				<param name="targetBeta" value="0.5"/>
 				<param name="cellSize" value="2000"/>
+				<param name="interval" value="1800"/>
+
 			</parameterset>
 		</parameterset>
 	</module>
