@@ -27,14 +27,13 @@ The algorithm and results are presented in
 *J. Bischoff, M. Maciejewski* **Simulation of city-wide replacement of private cars with autonomous taxis in Berlin**, Procedia Computer Science, 2016, 83, https://doi.org/10.1016/j.procs.2016.04.121
 
 The effects of different road capacity use are described in 
-*M. Maciejewski, J. Bischoff* **Congestion Effects of Autonomous Taxi Fleets**; Transport, 2017, 0, 1-10, [Available here](http://svn.vsp.tu-berlin.de/repos/public-svn/publications/vspwp/2016/16-11/
-)
+*M. Maciejewski, J. Bischoff* **Congestion Effects of Autonomous Taxi Fleets**; Transport, 2017, 0, 1-10, [Full text available here](http://dx.doi.org/10.14279/depositonce-7693)
 
 ### Demand Responsive Transport (DRT)
 
 Demand Responsive Transport allows the pooling of several passengers into a single vehicle. Several constraints, such as maximum travel times and maximum waiting times, can be taken into account when organizing the vehicle dispatch.
 A general description of the algorithms can be found in 
-*J. Bischoff, M. Maciejewski, K. Nagel* **City-wide Shared Taxis: A Simulation Study in Berlin**, IEEE ITSC 2017, DOI: [10.1109/ITSC.2017.8317926](https://doi.org/10.1109/ITSC.2017.8317926), full text available [here](https://svn.vsp.tu-berlin.de/repos/public-svn/publications/vspwp/2017/17-11).
+*J. Bischoff, M. Maciejewski, K. Nagel* **City-wide Shared Taxis: A Simulation Study in Berlin**, IEEE ITSC 2017, DOI: [10.1109/ITSC.2017.8317926](https://doi.org/10.1109/ITSC.2017.8317926), [Full text available here](https://svn.vsp.tu-berlin.de/repos/public-svn/publications/vspwp/2017/17-11).
 
 
 ### Autonomous Vehicles
@@ -56,8 +55,8 @@ The [scenarios](scenarios/) folder contains several test scenarios. These are ro
 
 ## How to use
 
-1) Check out this project using your favorite git client (or just download as a zip)
-  - You can either download the master-Version, which is running using the latest [MATSim-Snapshots}(https://github.com/matsim-org/matsim-libs), or download one of the [releases](https://github.com/matsim-org/matsim-maas/releases). Using the latest is release will give you relatively stable results, whereas using the master will provide more features, but possibly also minor bugs :)
+1) Check out this project using your favorite git client or just download as a zip
+    - You can either download the master-Version, which is running using the latest [MATSim-Snapshots](https://github.com/matsim-org/matsim-libs), or download one of the [releases](https://github.com/matsim-org/matsim-maas/releases). Using the latest is release will give you relatively stable results, whereas using the master will provide more features, but possibly also minor bugs :)
   
 2) Import the folder as a new Maven project to Eclipse (Import --> Maven --> Existing project) or intelliJ (New --> Module from existing sources --> Select the folder --> Maven)
 3) Run the example classes and start editing them according to your taste.
