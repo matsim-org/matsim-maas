@@ -57,6 +57,8 @@ The [scenarios](scenarios/) folder contains several test scenarios. These are ro
 ## How to use
 
 1) Check out this project using your favorite git client (or just download as a zip)
+  - You can either download the master-Version, which is running using the latest [MATSim-Snapshots}(https://github.com/matsim-org/matsim-libs), or download one of the [releases](https://github.com/matsim-org/matsim-maas/releases). Using the latest is release will give you relatively stable results, whereas using the master will provide more features, but possibly also minor bugs :)
+  
 2) Import the folder as a new Maven project to Eclipse (Import --> Maven --> Existing project) or intelliJ (New --> Module from existing sources --> Select the folder --> Maven)
 3) Run the example classes and start editing them according to your taste.
 
