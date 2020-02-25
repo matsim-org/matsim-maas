@@ -3,13 +3,13 @@
 The **Demand Responsive Transport**  module allows the simulation of pooled (or shared) rides in MATSim. 
 In the simulation scenario, there may be one or several *DRT operators*, each of them having its own characteristics, such as the vehicle fleet, detour or scoring paramters.
 
-##Algorithm
+## Algorithm
 DRT uses a heuristic algorithm to match passengers to vehicles, taking into account several constraints about detours.
 
 A general description of the algorithms can be found in 
 *J. Bischoff, M. Maciejewski, K. Nagel* **City-wide Shared Taxis: A Simulation Study in Berlin**, IEEE ITSC 2017, DOI: [10.1109/ITSC.2017.8317926](https://doi.org/10.1109/ITSC.2017.8317926), [Full text available here](http://dx.doi.org/10.14279/depositonce-7734).
 
-##Configuration
+## Configuration
 Based on a standard MATSim config file, DRT requires at least two additional config groups: One general DVRP and one for DRT. For an example config file, see [scenarios/cottbus/drtconfig_door2door.xml].
 
 The DRT configuration should look roughly like that:
@@ -49,31 +49,45 @@ The DRT configuration should look roughly like that:
 ```
 
 The function of the parameters is as follows:
+
 **mode** - The mode associated with the config parameterset. Add one parameterset per operator.
+
 **vehiclesFile**  - A file containing the fleet specifications. To get an idea how to create your own fleet file, see the _CreateFleetVehicles.java_ script.
+
 **operationalScheme** - DRT can either be used in three different operation modes:
 	- _door2door_ for a service serving passengers from door-to-door
 	- _serviceAreaBased_ for a door2door service that runs only within a certain area. The area must be defined in a shape file, which must be provided using the **drtServiceAreaShapeFile** parameter.
-	- _stopbased_ Provides a stop-based DRT services, where passengers need to walk to the first access stop and from the last egress stop. The stops need to be defined in the MATSim transit schedule format and the file needs to specified using the **transitStopFile** parameter.
+	- _stopbased_ Provides a stop-based DRT services, where passengers need to walk to the first access stop and from the last egress stop. The stops need to be defined in the MATSim transit schedule format and the file needs to specified using the 
+**transitStopFile** parameter.
+
 **changeStartLinkToLastLinkInSchedule** - If enabled, at the beginning of a new iteration, vehicles are kept where they were last parked in the previous iteration. Otherwise, they are positioned at their start link according to the vehicles file again. 
+
 
 The following parameters directly influence the pooling algorithms, which includes a simple linear function that determines the maximum allowable traveltime. The full equation is:
 maxTravelTime = maxTravelTimeAlpha \* estimated_drt_travel_time + maxTravelTimeBeta.
 
 **maxTravelTimeAlpha** - A factor, usually something >1.
-**maxTravelTimeBeta** - an additional offset in seconds. Keep in mind that maxTravelTime **includes** waiting times. Therefore, **maxTravelTimeBeta** >= **maxWaitTime**
+
+**maxTravelTimeBeta** - an additional offset in seconds. Keep in mind that maxTravelTime **includes** waiting times. Therefore, **maxTravelTimeBeta** >= **maxWaitTime** needs to be set.
+
 **maxWaitTime** - Maximum desirable waiting time for a vehicle to arrive. 
+
 **rejectRequestIfMaxWaitOrTravelTimeViolated** - If true, the max travel and wait times of a submitted request, are considered hard constraints (the request gets rejected if one of the constraints is violated). If false, the max travel and wait times are considered soft constraints (insertion of a request that violates one of the constraints is allowed, but its cost is increased by additional penalty to make it relatively less attractive). Penalisation of insertions can be customised by injecting a customized InsertionCostCalculator.PenaltyCalculator.
+
 
 For a first approximation of close vehicles, beeline distances are used.
 The following parameters should be adapted to the actual scenario:
 **estimatedBeelineDistanceFactor** - a factor of the beeline distance.
+
 **estimatedDrtSpeed** - speed estimation in \[m/s\]
 
 **stopDuration** - Determines the length of a stop to pick up or drop off passengers.
+
 **writeDetailedCustomerStats** - DRT writes several statistics per iteration. Disable if you do not need this to speed up the simulation.
 
 **Vehicle Re-Balancing**
 Re-balancing vehicles when empty is crucial in order to increase the overall efficiency of the system. In DRT, a Minimum Cost Flow Rebalancing strategy is already included that takes into account the demand structure of the previous iteration in order to rebalance vehicles. Its exact specification is currently being published and should be available in paper soon.
+
 **interval** - \[s\] the interval in between re-balancing vehicles in seconds.
+
 **cellSize** - \[m\] the demand per iteration is aggregated over cells. Use a bigger cell size for scenarios with large network extents.
