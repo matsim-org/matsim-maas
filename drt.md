@@ -50,7 +50,7 @@ The DRT configuration should look roughly like that:
 
 The function of the parameters is as follows:
 
-**mode** - The mode associated with the config parameterset. Add one parameterset per operator.
+**mode** - The mode associated with the config parameterset. Add one parameterset into the _multiModeDrt_ module per operator.
 
 **vehiclesFile**  - A file containing the fleet specifications. To get an idea how to create your own fleet file, see the _CreateFleetVehicles.java_ script.
 
