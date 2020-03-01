@@ -4,9 +4,10 @@ The **Demand Responsive Transport**  module allows the simulation of pooled (or 
 In the simulation scenario, there may be one or several *DRT operators*, each of them having its own characteristics, such as the vehicle fleet, detour or scoring paramters.
 
 ## Algorithm
-DRT uses a heuristic algorithm to match passengers to vehicles, taking into account several constraints about detours.
 
-A general description of the algorithms can be found in 
+The vehicle dispatch algorithm is based on an insertion heuristic, where for each new incoming request all feasible insertion points are assessed and the best one (for a given objective function) is chosen. The feasibility of insertion is checked against the following constraints: vehicle capacity, vehicle availability (time window), maximum wait time and travel time (for both the new request and all other uncompleted requests). By default, if no feasible insertion exists, the request gets rejected, although this behavour can be changed (see "Configuration").
+
+A more detailed description of the algorithms can be found in 
 *J. Bischoff, M. Maciejewski, K. Nagel* **City-wide Shared Taxis: A Simulation Study in Berlin**, IEEE ITSC 2017, DOI: [10.1109/ITSC.2017.8317926](https://doi.org/10.1109/ITSC.2017.8317926), [Full text available here](http://dx.doi.org/10.14279/depositonce-7734).
 
 ## Configuration
@@ -55,9 +56,9 @@ The function of the parameters is as follows:
 **vehiclesFile**  - A file containing the fleet specifications. To get an idea how to create your own fleet file, see the _CreateFleetVehicles.java_ script.
 
 **operationalScheme** - DRT can either be used in three different operation modes:
-	- _door2door_ for a service serving passengers from door-to-door
-	- _serviceAreaBased_ for a door2door service that runs only within a certain area. The area must be defined in a shape file, which must be provided using the **drtServiceAreaShapeFile** parameter.
-	- _stopbased_ Provides a stop-based DRT services, where passengers need to walk to the first access stop and from the last egress stop. The stops need to be defined in the MATSim transit schedule format and the file needs to specified using the 
+   - _door2door_ for a service serving passengers from door-to-door
+   - _serviceAreaBased_ for a door2door service that runs only within a certain area. The area must be defined in a shape file, which must be provided using the **drtServiceAreaShapeFile** parameter.
+   - _stopbased_ Provides a stop-based DRT services, where passengers need to walk to the first access stop and from the last egress stop. The stops need to be defined in the MATSim transit schedule format and the file needs to specified using the 
 **transitStopFile** parameter.
 
 **changeStartLinkToLastLinkInSchedule** - If enabled, at the beginning of a new iteration, vehicles are kept where they were last parked in the previous iteration. Otherwise, they are positioned at their start link according to the vehicles file again. 
