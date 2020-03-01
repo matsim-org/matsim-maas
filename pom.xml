@@ -53,7 +53,7 @@
 			<scope>test</scope>
 		</dependency>
 
-		<!-- the following dependencies show how to use MATSim contributions. For 
+		<!-- the following dependencies show how to use MATSim contributions. For
 			a list of available contribs, see http://matsim.org/extensions -->
 		<dependency>
 			<groupId>junit</groupId>
@@ -86,7 +86,7 @@
 			<artifactId>dvrp</artifactId>
 			<version>${matsim.version}</version>
 		</dependency>
-		
+
 	</dependencies>
 
 	<build>
@@ -95,10 +95,10 @@
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-compiler-plugin</artifactId>
-				<version>2.3.2</version>
+				<version>3.8.1</version>
 				<configuration>
-					<source>1.8</source>
-					<target>1.8</target>
+					<source>11</source>
+					<target>11</target>
 					<showWarnings>false</showWarnings>
 					<showDeprecation>false</showDeprecation>
 					<encoding>UTF-8</encoding>
@@ -122,30 +122,4 @@
 			</plugin>
 		</plugins>
 	</build>
-
-	<profiles>
-		<profile>
-			<id>java-9+</id>
-			<activation>
-				<jdk>[9</jdk>
-			</activation>
-			<dependencies>
-				<dependency>
-					<groupId>javax.xml.bind</groupId>
-					<artifactId>jaxb-api</artifactId>
-					<version>2.3.1</version>
-				</dependency>
-				<dependency>
-					<groupId>com.sun.xml.bind</groupId>
-					<artifactId>jaxb-core</artifactId>
-					<version>2.3.0.1</version>
-				</dependency>
-				<dependency>
-					<groupId>com.sun.xml.bind</groupId>
-					<artifactId>jaxb-impl</artifactId>
-					<version>2.3.0.1</version>
-				</dependency>
-			</dependencies>
-		</profile>
-	</profiles>
 </project>
