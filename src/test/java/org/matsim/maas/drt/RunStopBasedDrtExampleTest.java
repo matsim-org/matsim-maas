@@ -26,7 +26,7 @@ import org.junit.Test;
 public class RunStopBasedDrtExampleTest {
 
     @Test
-    public void testDrtDoorToDoor() {
+    public void testDrtStopBased() {
 		RunStopBasedDrtExample.main(new String[] { "" });
     }
 }
