@@ -20,6 +20,7 @@
 
 package org.matsim.maas.drt;
 
+import org.apache.log4j.Logger;
 import org.matsim.contrib.av.robotaxi.fares.drt.DrtFareModule;
 import org.matsim.contrib.av.robotaxi.fares.drt.DrtFaresConfigGroup;
 import org.matsim.contrib.drt.run.DrtControlerCreator;
@@ -45,7 +46,7 @@ public class RunDRTClass {
 			}
 		});
 		controler.run();
-		System.out.println("VKT traveled in last iteration: " + Math.round(vktCounter.getVkt_counted()) + " km");
+		Logger.getLogger(RunDRTClass.class).info("VKT traveled in last iteration: " + Math.round(vktCounter.getVkt_counted()) + " km");
 	}
 
 	public static void main(String[] args) {
