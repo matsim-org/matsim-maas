@@ -18,7 +18,7 @@
  *                                                                         *
  * *********************************************************************** */
 
-package org.matsim.maas.drt;
+package org.matsim.maas.utils;
 
 import org.matsim.api.core.v01.events.LinkEnterEvent;
 import org.matsim.api.core.v01.events.handler.LinkEnterEventHandler;
@@ -31,9 +31,6 @@ public class SimpleVKTCounter implements LinkEnterEventHandler {
 	@Inject
 	Network network;
 	private double vkt_counted = 0.0D;
-
-	SimpleVKTCounter() {
-	}
 
 	public void handleEvent(LinkEnterEvent event) {
 		this.vkt_counted += ((Link)this.network.getLinks().get(event.getLinkId())).getLength() / 1000.0D;
