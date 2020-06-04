@@ -18,6 +18,7 @@ The DRT configuration should look roughly like that:
 ```xml
 	<module name="multiModeDrt">
 		<parameterset type="drt">
+            <parameterset type="ExtensiveInsertionSearch"/>
 			<param name="mode" value="drt_1"/>
 			<param name="vehiclesFile" value="drtvehicles.xml"/>
 			<param name="operationalScheme" value="door2door"/>
