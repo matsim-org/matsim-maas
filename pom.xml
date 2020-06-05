@@ -12,7 +12,7 @@
 	<properties>
 
 		<!-- for the weekly release: matsim.version>12.0-2019w19-20190513.010711-1</matsim.version-->
-		<matsim.version>12.0-SNAPSHOT</matsim.version>
+		<matsim.version>13.0-SNAPSHOT</matsim.version>
 	</properties>
 
 
