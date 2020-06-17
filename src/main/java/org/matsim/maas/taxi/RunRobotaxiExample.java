@@ -19,20 +19,15 @@
 
 package org.matsim.maas.taxi;
 
-import org.matsim.api.core.v01.Scenario;
 import org.matsim.contrib.av.robotaxi.fares.taxi.TaxiFareModule;
 import org.matsim.contrib.av.robotaxi.fares.taxi.TaxiFaresConfigGroup;
 import org.matsim.contrib.dvrp.run.DvrpConfigGroup;
-import org.matsim.contrib.dvrp.run.DvrpModule;
-import org.matsim.contrib.dvrp.run.DvrpQSimComponents;
 import org.matsim.contrib.otfvis.OTFVisLiveModule;
 import org.matsim.contrib.taxi.run.MultiModeTaxiConfigGroup;
-import org.matsim.contrib.taxi.run.MultiModeTaxiModule;
-import org.matsim.contrib.taxi.run.TaxiConfigGroup;
+import org.matsim.contrib.taxi.run.TaxiControlerCreator;
 import org.matsim.core.config.Config;
 import org.matsim.core.config.ConfigUtils;
 import org.matsim.core.controler.Controler;
-import org.matsim.core.scenario.ScenarioUtils;
 import org.matsim.vis.otfvis.OTFVisConfigGroup;
 
 /**
@@ -57,15 +52,8 @@ public class RunRobotaxiExample {
 	}
 
 	public static Controler createControler(Config config, boolean otfvis) {
-		String mode = TaxiConfigGroup.getSingleModeTaxiConfig(config).getMode();
-
-		Scenario scenario = ScenarioUtils.loadScenario(config);
-
-		Controler controler = new Controler(scenario);
+		Controler controler=TaxiControlerCreator.createControler(config, otfvis);
 		controler.addOverridingModule(new TaxiFareModule());
-		controler.addOverridingModule(new DvrpModule());
-		controler.addOverridingModule(new MultiModeTaxiModule());
-		controler.configureQSimComponents(DvrpQSimComponents.activateModes(mode));
 
 		if (otfvis) {
 			controler.addOverridingModule(new OTFVisLiveModule());
