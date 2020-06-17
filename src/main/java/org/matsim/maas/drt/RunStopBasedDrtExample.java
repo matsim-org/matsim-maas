@@ -41,7 +41,7 @@ public class RunStopBasedDrtExample {
 
     public static void run(Config config, boolean otfvis) {
         //Creates a MATSim Controler and preloads all DRT related packages
-        Controler controler = DrtControlerCreator.createControlerWithSingleModeDrt(config, otfvis);
+        Controler controler = DrtControlerCreator.createControler(config, otfvis);
 
         //this is optional, adds fares to DRT
         controler.addOverridingModule(new DrtFareModule());

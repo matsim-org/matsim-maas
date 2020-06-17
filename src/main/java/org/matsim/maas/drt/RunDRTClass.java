@@ -37,7 +37,7 @@ import org.matsim.vis.otfvis.OTFVisConfigGroup;
 public class RunDRTClass {
 
 	public static void run(Config config, boolean otfvis) {
-		Controler controler = DrtControlerCreator.createControlerWithSingleModeDrt(config, otfvis);
+		Controler controler = DrtControlerCreator.createControler(config, otfvis);
 		controler.addOverridingModule(new DrtFareModule());
 		final SimpleVKTCounter vktCounter = new SimpleVKTCounter();
 		controler.addOverridingModule(new AbstractModule() {
