@@ -20,12 +20,11 @@
 
 package org.matsim.maas.utils;
 
+import javax.inject.Inject;
+
 import org.matsim.api.core.v01.events.LinkEnterEvent;
 import org.matsim.api.core.v01.events.handler.LinkEnterEventHandler;
-import org.matsim.api.core.v01.network.Link;
 import org.matsim.api.core.v01.network.Network;
-
-import javax.inject.Inject;
 
 public class SimpleVKTCounter implements LinkEnterEventHandler {
 	@Inject
@@ -33,7 +32,7 @@ public class SimpleVKTCounter implements LinkEnterEventHandler {
 	private double vkt_counted = 0.0D;
 
 	public void handleEvent(LinkEnterEvent event) {
-		this.vkt_counted += ((Link)this.network.getLinks().get(event.getLinkId())).getLength() / 1000.0D;
+		this.vkt_counted += this.network.getLinks().get(event.getLinkId()).getLength() / 1000.0D;
 	}
 
 	public void reset(int iteration) {
