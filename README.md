@@ -62,5 +62,8 @@ The [scenarios](scenarios/) folder contains several test scenarios. These are ro
 
 Using the Maven approach is *strongly* recommended.
 
+However, if you want to run a DRT test scenario from the MATSim GUI, you can use the jar file located in the top folder of this directory. Run it by typing java -jar matsim-maas-drt-GUI.jar into your command line or by double-clicking on it. Choose a drt scenario config file and hit Start MATSim. Note that this jar is not compatible with the taxi examples.
+
+
 
 
