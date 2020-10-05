@@ -27,5 +27,4 @@ public class RunDRTGUI {
 	public static void main(String[] args) {
 		Gui.show("MATSim DRT Simulation ITS class", RunDRTClass.class);
 	}
-
 }

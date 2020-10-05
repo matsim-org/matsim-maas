@@ -21,8 +21,6 @@
 package org.matsim.maas.drt;
 
 import org.apache.log4j.Logger;
-import org.matsim.contrib.av.robotaxi.fares.drt.DrtFareModule;
-import org.matsim.contrib.av.robotaxi.fares.drt.DrtFaresConfigGroup;
 import org.matsim.contrib.drt.run.DrtControlerCreator;
 import org.matsim.contrib.drt.run.MultiModeDrtConfigGroup;
 import org.matsim.contrib.dvrp.run.DvrpConfigGroup;
@@ -37,7 +35,6 @@ public class RunDRTClass {
 
 	public static void run(Config config, boolean otfvis) {
 		Controler controler = DrtControlerCreator.createControler(config, otfvis);
-		controler.addOverridingModule(new DrtFareModule());
 		final SimpleVKTCounter vktCounter = new SimpleVKTCounter();
 		controler.addOverridingModule(new AbstractModule() {
 			public void install() {
@@ -45,14 +42,14 @@ public class RunDRTClass {
 			}
 		});
 		controler.run();
-		Logger.getLogger(RunDRTClass.class).info("VKT traveled in last iteration: " + Math.round(vktCounter.getVkt_counted()) + " km");
+		Logger.getLogger(RunDRTClass.class)
+				.info("VKT traveled in last iteration: " + Math.round(vktCounter.getVkt_counted()) + " km");
 	}
 
 	public static void main(String[] args) {
-		Config config = ConfigUtils.loadConfig(args[0], new MultiModeDrtConfigGroup(), new DvrpConfigGroup(), new OTFVisConfigGroup(),
-				new DrtFaresConfigGroup());
+		Config config = ConfigUtils.loadConfig(args[0], new MultiModeDrtConfigGroup(), new DvrpConfigGroup(),
+				new OTFVisConfigGroup());
 
 		run(config, false);
 	}
-
 }

@@ -19,8 +19,6 @@
 
 package org.matsim.maas.drt;
 
-import org.matsim.contrib.av.robotaxi.fares.drt.DrtFareModule;
-import org.matsim.contrib.av.robotaxi.fares.drt.DrtFaresConfigGroup;
 import org.matsim.contrib.drt.run.DrtControlerCreator;
 import org.matsim.contrib.drt.run.MultiModeDrtConfigGroup;
 import org.matsim.contrib.dvrp.run.DvrpConfigGroup;
@@ -38,27 +36,22 @@ import org.matsim.vis.otfvis.OTFVisConfigGroup;
  */
 public class RunDoorToDoorDrtExample {
 
-    private static final String COTTBUS_DOOR2DOOR_CONFIG = "scenarios/cottbus/drtconfig_door2door.xml";
+	private static final String COTTBUS_DOOR2DOOR_CONFIG = "scenarios/cottbus/drtconfig_door2door.xml";
 
 	@SuppressWarnings("unused")
-    private static final String MIELEC_CONFIG = "scenarios/mielec_2014_02/mielec_drt_config.xml";
+	private static final String MIELEC_CONFIG = "scenarios/mielec_2014_02/mielec_drt_config.xml";
 
 	public static void run(Config config, boolean otfvis) {
 		//Creates a MATSim Controler and preloads all DRT related packages
 		Controler controler = DrtControlerCreator.createControler(config, otfvis);
-
-		//this is optional, adds fares to DRT
-		controler.addOverridingModule(new DrtFareModule());
 
 		//starts the simulation
 		controler.run();
 	}
 
 	public static void main(String[] args) {
-
 		Config config = ConfigUtils.loadConfig(COTTBUS_DOOR2DOOR_CONFIG, new MultiModeDrtConfigGroup(),
-				new DvrpConfigGroup(),
-				new OTFVisConfigGroup(), new DrtFaresConfigGroup());
+				new DvrpConfigGroup(), new OTFVisConfigGroup());
 		run(config, false);
 	}
 }

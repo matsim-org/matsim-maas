@@ -19,8 +19,6 @@
 
 package org.matsim.maas.drt;
 
-import org.matsim.contrib.av.robotaxi.fares.drt.DrtFareModule;
-import org.matsim.contrib.av.robotaxi.fares.drt.DrtFaresConfigGroup;
 import org.matsim.contrib.drt.run.DrtControlerCreator;
 import org.matsim.contrib.drt.run.MultiModeDrtConfigGroup;
 import org.matsim.contrib.dvrp.run.DvrpConfigGroup;
@@ -38,23 +36,17 @@ import org.matsim.vis.otfvis.OTFVisConfigGroup;
  */
 public class RunStopBasedDrtExample {
 
+	public static void run(Config config, boolean otfvis) {
+		//Creates a MATSim Controler and preloads all DRT related packages
+		Controler controler = DrtControlerCreator.createControler(config, otfvis);
 
-    public static void run(Config config, boolean otfvis) {
-        //Creates a MATSim Controler and preloads all DRT related packages
-        Controler controler = DrtControlerCreator.createControler(config, otfvis);
+		//starts the simulation
+		controler.run();
+	}
 
-        //this is optional, adds fares to DRT
-        controler.addOverridingModule(new DrtFareModule());
-
-        //starts the simulation
-        controler.run();
-    }
-
-    public static void main(String[] args) {
-
+	public static void main(String[] args) {
 		Config config = ConfigUtils.loadConfig("scenarios/cottbus/drtconfig_stopbased.xml",
-				new MultiModeDrtConfigGroup(), new DvrpConfigGroup(),
-                new OTFVisConfigGroup(), new DrtFaresConfigGroup());
-        run(config, false);
-    }
+				new MultiModeDrtConfigGroup(), new DvrpConfigGroup(), new OTFVisConfigGroup());
+		run(config, false);
+	}
 }
