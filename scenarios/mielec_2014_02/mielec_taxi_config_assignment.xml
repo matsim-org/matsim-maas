@@ -20,6 +20,8 @@
 
 			<!-- This is an assignement based dispatch algorithm -->
 			<parameterset type="AssignmentTaxiOptimizer"/>
+
+			<parameterset type="taxifare"/>
 		</parameterset>
 	</module>
 

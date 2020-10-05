@@ -19,8 +19,6 @@
 
 package org.matsim.maas.taxi;
 
-import org.matsim.contrib.av.robotaxi.fares.taxi.TaxiFareModule;
-import org.matsim.contrib.av.robotaxi.fares.taxi.TaxiFaresConfigGroup;
 import org.matsim.contrib.dvrp.run.DvrpConfigGroup;
 import org.matsim.contrib.otfvis.OTFVisLiveModule;
 import org.matsim.contrib.taxi.run.MultiModeTaxiConfigGroup;
@@ -46,14 +44,13 @@ public class RunRobotaxiExample {
 	}
 
 	public static void run(String configFile, boolean otfvis) {
-		Config config = ConfigUtils.loadConfig(configFile, new DvrpConfigGroup(), new TaxiFaresConfigGroup(),
-				new OTFVisConfigGroup(), new MultiModeTaxiConfigGroup());
+		Config config = ConfigUtils.loadConfig(configFile, new DvrpConfigGroup(), new OTFVisConfigGroup(),
+				new MultiModeTaxiConfigGroup());
 		createControler(config, otfvis).run();
 	}
 
 	public static Controler createControler(Config config, boolean otfvis) {
-		Controler controler=TaxiControlerCreator.createControler(config, otfvis);
-		controler.addOverridingModule(new TaxiFareModule());
+		Controler controler = TaxiControlerCreator.createControler(config, otfvis);
 
 		if (otfvis) {
 			controler.addOverridingModule(new OTFVisLiveModule());

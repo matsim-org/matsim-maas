@@ -21,6 +21,7 @@
 			<!-- This is a rule based dispatch algorithm -->
 			<parameterset type="RuleBasedTaxiOptimizer"/>
 
+			<parameterset type="taxifare"/>
 		</parameterset>
 	</module>
 
