@@ -20,8 +20,6 @@
 
 package org.matsim.maas;
 
-import java.net.URL;
-
 import org.matsim.api.core.v01.Scenario;
 import org.matsim.contrib.drt.run.DrtControlerCreator;
 import org.matsim.contrib.drt.run.MultiModeDrtConfigGroup;
@@ -43,9 +41,13 @@ import org.matsim.vis.otfvis.OTFVisConfigGroup;
  * @author Michal Maciejewski (michalm)
  */
 public class RunMaas {
-	public static void run(URL configUrl, boolean otfvis) {
-		Config config = ConfigUtils.loadConfig(configUrl, new MultiModeDrtConfigGroup(), new MultiModeTaxiConfigGroup(),
-				new DvrpConfigGroup(), new OTFVisConfigGroup());
+	public static void main(String[] args) {
+		run(args[0], false);
+	}
+
+	public static void run(String configFile, boolean otfvis) {
+		Config config = ConfigUtils.loadConfig(configFile, new MultiModeDrtConfigGroup(),
+				new MultiModeTaxiConfigGroup(), new DvrpConfigGroup(), new OTFVisConfigGroup());
 		Scenario scenario = DrtControlerCreator.createScenarioWithDrtRouteFactory(config);
 		ScenarioUtils.loadScenario(scenario);
 		config.controler()
