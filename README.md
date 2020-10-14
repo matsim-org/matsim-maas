@@ -34,7 +34,6 @@ The effects of different road capacity use are described in
 Demand Responsive Transport allows the pooling of several passengers into a single vehicle. Several constraints, such as maximum travel times and maximum waiting times, can be taken into account when organizing the vehicle dispatch. 
 Please find a full documentation [here](drt.md).
 
-
 ### Autonomous Vehicles
 
 All MaaS extensions may be simulated with and without drivers. Arguably, the biggest influence of AV operations are road capacity and pricing.
@@ -51,19 +50,13 @@ With DVRP being the common base to all the modules described here, there is some
 
 The [scenarios](scenarios/) folder contains several test scenarios. These are roughly derived from existing MATSim scenarios, but often depict only the excerpt with relevance to MaaS of the scenario. 
 
-
 ## How to use
 
-1) Check out this project using your favorite git client or just download as a zip
-    - You can either download the master-Version, which is running using the latest [MATSim-Snapshots](https://github.com/matsim-org/matsim-libs), or download one of the [releases](https://github.com/matsim-org/matsim-maas/releases). Using the latest is release will give you relatively stable results, whereas using the master will provide more features, but possibly also minor bugs :)
+1) Check out this project using your favorite git client or just download as a zip. As for the latter, you can download:
+    - the [development version](https://github.com/matsim-org/matsim-maas/archive/master.zip), which is running using the latest MATSim development snapshot
+    - one of the [releases](https://github.com/matsim-org/matsim-maas/releases), which is running using the official MATSim releases
+    Using the latest is release will give you relatively stable results, whereas using the master will provide more features, though some of them not thoroughly tested.
   
 2) Import the folder as a new Maven project to Eclipse (Import --> Maven --> Existing project) or intelliJ (New --> Module from existing sources --> Select the folder --> Maven)
-3) Run the example classes and start editing them according to your taste.
 
-Using the Maven approach is *strongly* recommended.
-
-However, if you want to run a DRT test scenario from the MATSim GUI, you can use the jar file located in the top folder of this directory. Run it by typing java -jar matsim-maas-drt-GUI.jar into your command line or by double-clicking on it. Choose a drt scenario config file and hit Start MATSim. Note that this jar is not compatible with the taxi examples.
-
-
-
-
+3) Run the example classes and start editing them according to your taste. You can also run `RunMaasGui` to launch a simple GUI application for running MaaS simulations.
