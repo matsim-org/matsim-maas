@@ -34,17 +34,19 @@ The DRT configuration should look roughly like that:
 			<param name="maxWaitTime" value="1200.0"/>
 			<param name="rejectRequestIfMaxWaitOrTravelTimeViolated" value="true"/>
 			
-			<param name="estimatedBeelineDistanceFactor" value="1.3"/>
-			<param name="estimatedDrtSpeed" value="8.333333333333334"/>
-			
 			<param name="stopDuration" value="60.0"/>
 			<param name="writeDetailedCustomerStats" value="true"/>
 
-			<parameterset type="minCostFlowRebalancing">
-				<param name="targetAlpha" value="0.5"/>
-				<param name="targetBeta" value="0.5"/>
-				<param name="interval" value="1800"/>
-				<param name="cellSize" value="2000"/>
+			<parameterset type="zonalSystem">
+				<param name="zonesGeneration" value="GridFromNetwork"/>
+				<param name="cellSize" value="500"/>
+			</parameterset>
+
+			<parameterset type="rebalancing">
+				<parameterset type="minCostFlowRebalancingStrategy">
+					<param name="targetAlpha" value="0.5"/>
+					<param name="targetBeta" value="0.5"/>
+				</parameterset>
 			</parameterset>
 		</parameterset>
 	</module>
@@ -76,19 +78,12 @@ maxTravelTime = maxTravelTimeAlpha \* estimated_drt_travel_time + maxTravelTimeB
 
 **rejectRequestIfMaxWaitOrTravelTimeViolated** - If true, the max travel and wait times of a submitted request, are considered hard constraints (the request gets rejected if one of the constraints is violated). If false, the max travel and wait times are considered soft constraints (insertion of a request that violates one of the constraints is allowed, but its cost is increased by additional penalty to make it relatively less attractive). Penalisation of insertions can be customised by injecting a customized InsertionCostCalculator.PenaltyCalculator.
 
-
-For a first approximation of close vehicles, beeline distances are used.
-The following parameters should be adapted to the actual scenario:
-**estimatedBeelineDistanceFactor** - a factor of the beeline distance.
-
-**estimatedDrtSpeed** - speed estimation in \[m/s\]
-
 **stopDuration** - Determines the length of a stop to pick up or drop off passengers.
 
 **writeDetailedCustomerStats** - DRT writes several statistics per iteration. Disable if you do not need this to speed up the simulation.
 
-**Vehicle Re-Balancing**
-Re-balancing vehicles when empty is crucial in order to increase the overall efficiency of the system. In DRT, a Minimum Cost Flow Rebalancing strategy is already included that takes into account the demand structure of the previous iteration in order to rebalance vehicles. Its exact specification is currently being published and should be available in paper soon.
+**Vehicle rebalancing**
+Rebalancing idle vehicles is crucial in order to increase the overall efficiency of the system. In DRT, a Minimum Cost Flow Rebalancing strategy is already included that takes into account the demand structure of the previous iteration in order to rebalance vehicles. More info in [this paper](https://www.sciencedirect.com/science/article/pii/S1877050920306220).
 
 **interval** - \[s\] the interval in between re-balancing vehicles in seconds.
 
