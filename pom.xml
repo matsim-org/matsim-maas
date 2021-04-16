@@ -10,9 +10,7 @@
 	<description>A toolkit for using MATSim to simulate Mobility as a Service (MaaS)</description>
 
 	<properties>
-
-		<!-- for the weekly release: matsim.version>12.0-2019w19-20190513.010711-1</matsim.version-->
-		<matsim.version>13.0-SNAPSHOT</matsim.version>
+		<matsim.version>14.0-PR1452</matsim.version>
 	</properties>
 
 
@@ -31,15 +29,7 @@
 		</repository>
 		<repository>
 			<id>matsim</id>
-			<url>http://dl.bintray.com/matsim/matsim</url>
-		</repository>
-		<repository>
-			<id>ojo-snapshots</id>
-			<url>http://oss.jfrog.org/libs-snapshot</url>
-		</repository>
-		<repository>
-			<id>SBB</id>
-			<url>https://schweizerischebundesbahnen.bintray.com/simba.mvn</url>
+			<url>https://repo.matsim.org/repository/matsim</url>
 		</repository>
 	</repositories>
 
