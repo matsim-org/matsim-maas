@@ -10,11 +10,6 @@
 	<module name="multiModeTaxi">
 		<parameterset type="taxi">
 
-			<!-- Used in AStarEuclidean for shortest path search for occupied drives.
-				Values above 1.0 (typically, 1.5 to 3.0) speed up the search, but at the
-				cost of obtaining longer paths -->
-			<param name="AStarEuclideanOverdoFactor" value="1.0"/>
-
 			<param name="breakIfNotAllRequestsServed" value="false"/>
 
 			<param name="changeStartLinkToLastLinkInSchedule" value="true"/>
