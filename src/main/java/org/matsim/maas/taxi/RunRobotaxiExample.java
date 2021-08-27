@@ -20,12 +20,10 @@
 package org.matsim.maas.taxi;
 
 import org.matsim.contrib.dvrp.run.DvrpConfigGroup;
-import org.matsim.contrib.otfvis.OTFVisLiveModule;
 import org.matsim.contrib.taxi.run.MultiModeTaxiConfigGroup;
 import org.matsim.contrib.taxi.run.TaxiControlerCreator;
 import org.matsim.core.config.Config;
 import org.matsim.core.config.ConfigUtils;
-import org.matsim.core.controler.Controler;
 import org.matsim.vis.otfvis.OTFVisConfigGroup;
 
 /**
@@ -37,25 +35,17 @@ import org.matsim.vis.otfvis.OTFVisConfigGroup;
  * {@link org.matsim.contrib.av.robotaxi.vehicles.CreateTaxiVehicles}
  */
 public class RunRobotaxiExample {
+	public static final String CONFIG_FILE = "scenarios/cottbus/robotaxi_config.xml";
 
 	public static void main(String[] args) {
-		String configFile = "scenarios/cottbus/robotaxi_config.xml";
-		RunRobotaxiExample.run(configFile, false);
+		RunRobotaxiExample.run(CONFIG_FILE, false, 10);
 	}
 
-	public static void run(String configFile, boolean otfvis) {
+	public static void run(String configFile, boolean otfvis, int lastIteration) {
 		Config config = ConfigUtils.loadConfig(configFile, new DvrpConfigGroup(), new OTFVisConfigGroup(),
 				new MultiModeTaxiConfigGroup());
-		createControler(config, otfvis).run();
-	}
+		config.controler().setLastIteration(lastIteration);
 
-	public static Controler createControler(Config config, boolean otfvis) {
-		Controler controler = TaxiControlerCreator.createControler(config, otfvis);
-
-		if (otfvis) {
-			controler.addOverridingModule(new OTFVisLiveModule());
-		}
-
-		return controler;
+		TaxiControlerCreator.createControler(config, otfvis).run();
 	}
 }
