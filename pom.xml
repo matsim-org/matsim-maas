@@ -4,7 +4,7 @@
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>org.matsim</groupId>
 	<artifactId>matsim-maas</artifactId>
-	<version>${matsim.version}</version>
+	<version>master-SNAPSHOT</version>
 
 	<name>MATSim MaaS simulation</name>
 	<description>A toolkit for using MATSim to simulate Mobility as a Service (MaaS)</description>
