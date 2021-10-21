@@ -24,8 +24,8 @@ jobs:
       - name: Setup Java
         uses: actions/setup-java@v2
         with:
-          java-version: 16
-          distribution: 'adopt'
+          java-version: 17
+          distribution: 'zulu'
 
       - name: Maven verify
         run: mvn verify --batch-mode -Dmaven.test.redirectTestOutputToFile -Dmatsim.preferLocalDtds=true --fail-at-end
