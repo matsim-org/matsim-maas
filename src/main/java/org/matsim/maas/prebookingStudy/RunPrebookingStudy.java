@@ -44,7 +44,7 @@ public class RunPrebookingStudy implements MATSimAppCommand {
 		controler.configureQSimComponents(DvrpQSimComponents.activateAllModes(multiModeDrtConfig));
 
 		controler.run();
-		
+
 		return 0;
 	}
 }
