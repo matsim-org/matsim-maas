@@ -115,7 +115,7 @@ public class CreateFleetVehicles implements MATSimAppCommand {
 		}
 
 		new FleetWriter(vehicleSpecifications.stream()).write(outputFile.toString());
-		
+
 		return 0;
 	}
 }
