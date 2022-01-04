@@ -45,6 +45,7 @@ public class RunPrebookingStudy implements MATSimAppCommand {
 
 		controler.run();
 
+		
 		return 0;
 	}
 }
