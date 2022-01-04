@@ -7,6 +7,7 @@ import org.matsim.contrib.drt.routing.DrtRouteFactory;
 import org.matsim.contrib.drt.run.DrtConfigs;
 import org.matsim.contrib.drt.run.MultiModeDrtConfigGroup;
 import org.matsim.contrib.drt.run.MultiModeDrtModule;
+import org.matsim.contrib.dvrp.run.DvrpConfigGroup;
 import org.matsim.contrib.dvrp.run.DvrpModule;
 import org.matsim.contrib.dvrp.run.DvrpQSimComponents;
 import org.matsim.contrib.dvrp.run.MultiModal;
@@ -28,10 +29,13 @@ public class RunPrebookingStudy implements MATSimAppCommand {
 	@CommandLine.Option(names = "--config", description = "path to config file", required = true)
 	private Path configPath;
 
+	public static void main(String[] args) {
+		new RunPrebookingStudy().execute(args);
+	}
 
 	@Override
 	public Integer call() throws Exception {
-		Config config = ConfigUtils.loadConfig(configPath.toString());
+		Config config = ConfigUtils.loadConfig(configPath.toString(), new MultiModeDrtConfigGroup(), new DvrpConfigGroup());
 		MultiModeDrtConfigGroup multiModeDrtConfig = MultiModeDrtConfigGroup.get(config);
 		DrtConfigs.adjustMultiModeDrtConfig(multiModeDrtConfig, config.planCalcScore(), config.plansCalcRoute());
 
