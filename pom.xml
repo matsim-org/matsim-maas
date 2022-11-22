@@ -10,7 +10,7 @@
 	<description>A toolkit for using MATSim to simulate Mobility as a Service (MaaS)</description>
 
 	<properties>
-		<matsim.version>15.0-2022w46</matsim.version>
+		<matsim.version>15.0-2022w47</matsim.version>
 	</properties>
 
 
