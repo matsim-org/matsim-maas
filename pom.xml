@@ -2,31 +2,21 @@
 		 xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 
 	<modelVersion>4.0.0</modelVersion>
-	<groupId>org.matsim</groupId>
 	<artifactId>matsim-maas</artifactId>
+	<packaging>jar</packaging>
 	<version>master-SNAPSHOT</version>
+
+	<parent>
+		<groupId>org.matsim</groupId>
+		<artifactId>matsim-all</artifactId>
+		<version>15.0-2022w50</version>
+		<relativePath/>
+	</parent>
 
 	<name>MATSim MaaS simulation</name>
 	<description>A toolkit for using MATSim to simulate Mobility as a Service (MaaS)</description>
 
-	<properties>
-		<matsim.version>15.0-2022w50</matsim.version>
-	</properties>
-
-
 	<repositories>
-		<repository>
-			<!-- Geotools is not on Maven central -->
-			<id>osgeo</id>
-			<name>Geotools repository</name>
-			<url>https://repo.osgeo.org/repository/release/</url>
-			<snapshots>
-				<enabled>false</enabled>
-			</snapshots>
-			<releases>
-				<enabled>true</enabled>
-			</releases>
-		</repository>
 		<repository>
 			<id>matsim</id>
 			<url>https://repo.matsim.org/repository/matsim</url>
@@ -37,7 +27,7 @@
 		<dependency>
 			<groupId>org.matsim</groupId>
 			<artifactId>matsim</artifactId>
-			<version>${matsim.version}</version>
+			<version>${project.parent.version}</version>
 		</dependency>
 
 		<!-- the following dependencies show how to use MATSim contributions. For
@@ -45,69 +35,41 @@
 		<dependency>
 			<groupId>org.matsim.contrib</groupId>
 			<artifactId>otfvis</artifactId>
-			<version>${matsim.version}</version>
+			<version>${project.parent.version}</version>
 		</dependency>
 		<dependency>
 			<groupId>org.matsim.contrib</groupId>
 			<artifactId>taxi</artifactId>
-			<version>${matsim.version}</version>
+			<version>${project.parent.version}</version>
 		</dependency>
 		<dependency>
 			<groupId>org.matsim.contrib</groupId>
 			<artifactId>av</artifactId>
-			<version>${matsim.version}</version>
+			<version>${project.parent.version}</version>
 		</dependency>
 		<dependency>
 			<groupId>org.matsim.contrib</groupId>
 			<artifactId>drt</artifactId>
-			<version>${matsim.version}</version>
+			<version>${project.parent.version}</version>
 		</dependency>
 		<dependency>
 			<groupId>org.matsim.contrib</groupId>
 			<artifactId>dvrp</artifactId>
-			<version>${matsim.version}</version>
+			<version>${project.parent.version}</version>
 		</dependency>
 
 		<!-- test dependencies -->
 		<dependency>
 			<groupId>junit</groupId>
 			<artifactId>junit</artifactId>
-			<version>4.13.2</version>
 			<scope>test</scope>
 		</dependency>
 		<dependency>
 			<groupId>org.matsim</groupId>
 			<artifactId>matsim</artifactId>
-			<version>${matsim.version}</version>
+			<version>${project.parent.version}</version>
 			<type>test-jar</type>
 			<scope>test</scope>
 		</dependency>
 	</dependencies>
-
-	<build>
-		<plugins>
-			<plugin>
-				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-compiler-plugin</artifactId>
-				<version>3.10.1</version>
-				<configuration>
-					<release>17</release>
-					<showWarnings>false</showWarnings>
-					<showDeprecation>false</showDeprecation>
-					<encoding>UTF-8</encoding>
-					<!-- configure initial and maximal memory for compiling -->
-				</configuration>
-			</plugin>
-		</plugins>
-
-		<pluginManagement>
-			<plugins>
-				<plugin>
-					<groupId>org.apache.maven.plugins</groupId>
-					<artifactId>maven-surefire-plugin</artifactId>
-					<version>2.22.2</version>
-				</plugin>
-			</plugins>
-		</pluginManagement>
-	</build>
 </project>
