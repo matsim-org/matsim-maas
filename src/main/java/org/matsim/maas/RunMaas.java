@@ -46,19 +46,18 @@ public class RunMaas {
 	}
 
 	public static void run(String configFile, boolean otfvis) {
-		Config config = ConfigUtils.loadConfig(configFile, new MultiModeDrtConfigGroup(),
-				new MultiModeTaxiConfigGroup(), new DvrpConfigGroup(), new OTFVisConfigGroup());
+		Config config = ConfigUtils.loadConfig(configFile, new MultiModeDrtConfigGroup(), new MultiModeTaxiConfigGroup(), new DvrpConfigGroup(),
+			new OTFVisConfigGroup());
 		Scenario scenario = DrtControlerCreator.createScenarioWithDrtRouteFactory(config);
 		ScenarioUtils.loadScenario(scenario);
-		config.controler()
-				.setOverwriteFileSetting(OutputDirectoryHierarchy.OverwriteFileSetting.overwriteExistingFiles);
+		config.controller().setOverwriteFileSetting(OutputDirectoryHierarchy.OverwriteFileSetting.overwriteExistingFiles);
 		Controler controler = new Controler(scenario);
 		controler.addOverridingModule(new MultiModeDrtModule());
 		controler.addOverridingModule(new MultiModeTaxiModule());
 
 		controler.addOverridingModule(new DvrpModule());
-		controler.configureQSimComponents(DvrpQSimComponents.activateAllModes(MultiModeTaxiConfigGroup.get(config),
-				MultiModeDrtConfigGroup.get(config)));
+		controler.configureQSimComponents(
+			DvrpQSimComponents.activateAllModes(MultiModeTaxiConfigGroup.get(config), MultiModeDrtConfigGroup.get(config)));
 
 		if (otfvis) {
 			controler.addOverridingModule(new OTFVisLiveModule());

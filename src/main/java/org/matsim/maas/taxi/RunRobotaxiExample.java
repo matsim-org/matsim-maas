@@ -44,7 +44,7 @@ public class RunRobotaxiExample {
 	public static void run(String configFile, boolean otfvis, int lastIteration) {
 		Config config = ConfigUtils.loadConfig(configFile, new DvrpConfigGroup(), new OTFVisConfigGroup(),
 				new MultiModeTaxiConfigGroup());
-		config.controler().setLastIteration(lastIteration);
+		config.controller().setLastIteration(lastIteration);
 
 		TaxiControlerCreator.createControler(config, otfvis).run();
 	}
