@@ -40,7 +40,7 @@ public class RunTaxiExample {
 		// load config
 		Config config = ConfigUtils.loadConfig(configFile, new MultiModeTaxiConfigGroup(), new DvrpConfigGroup(),
 				new OTFVisConfigGroup());
-		config.controler().setLastIteration(lastIteration);
+		config.controller().setLastIteration(lastIteration);
 
 		TaxiControlerCreator.createControler(config, otfvis).run();
 	}
