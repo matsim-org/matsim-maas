@@ -9,7 +9,7 @@
 	<parent>
 		<groupId>org.matsim</groupId>
 		<artifactId>matsim-all</artifactId>
-		<version>16.0-2023w48</version>
+		<version>16.0-2023w49</version>
 		<relativePath/>
 	</parent>
 
