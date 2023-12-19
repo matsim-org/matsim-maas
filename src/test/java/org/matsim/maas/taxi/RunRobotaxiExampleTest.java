@@ -20,7 +20,7 @@
 
 package org.matsim.maas.taxi;
 
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 /**
  * @author Michal Maciejewski (michalm)
