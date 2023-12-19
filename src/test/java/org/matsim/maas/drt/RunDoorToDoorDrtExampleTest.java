@@ -21,7 +21,7 @@ package org.matsim.maas.drt;/*
  * created by jbischoff, 06.09.2018
  */
 
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 public class RunDoorToDoorDrtExampleTest {
 
